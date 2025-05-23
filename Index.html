@@ -3,36 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#667eea">
-    <meta name="description" content="Professional coin anomaly detection system for numismatic inspection">
-    
-    <!-- PWA Configuration -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNvaW4gQW5vbWFseSBEZXRlY3RvciIsCiAgInNob3J0X25hbWUiOiAiQ29pbkRldGVjdG9yIiwKICAiZGVzY3JpcHRpb24iOiAiUHJvZmVzc2lvbmFsIGNvaW4gYW5vbWFseSBkZXRlY3Rpb24gc3lzdGVtIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjNjY3ZWVhIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlOVEVpSUdobGFXZG9kRDBpTlRFaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVNBMU1TSWdabWxzYkQwaWJtOXVaU0lnZUcxc2JuTTlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5Mekl3TURBdmMzWm5JaUErSUR4eVpXTjBJSGRwWkhSb1BTSTFNU0lnYUdWcFoyaDBQU0kxTVNJZ2NtRjRQU0kyTGpVaUlHWnBiR3c5SWlObU5tSTJZaUlnTHo0Z1BHTnBjbU5zWlNCamVEMGlNalVpSUdONVBTSTFNU0lnY2owZ01qTWlJR1pwYkd3OUlpTm1abVpqWkdNaUx6NGdQSFJsZUhRZ2VEMGlNUzQ0SWlCNVBTSTFOQ0lnWm05dWRDMW1ZVzFwYkhrOUltRnlhV0ZzSWlCbWIyNTBMWE5wZW1VOUlqRTRJaUJtYVd4c1BTSWpNVEZsTTJNM01pSStReno4TDNSbGVIUStJRHd2YzNablBnPT0iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
-    
-    <!-- Apple PWA Support -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="CoinDetector">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEiIGhlaWdodD0iNTEiIHZpZXdCb3g9IjAgMCA1MSA1MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gPHJlY3Qgd2lkdGg9IjUxIiBoZWlnaHQ9IjUxIiByeD0iNi41IiBmaWxsPSIjZjZiNmIiLz4gPGNpcmNsZSBjeD0iMjUiIGN5PSI1MSIgcj0iMjMiIGZpbGw9IiNmZmZjZGMiLz4gPHRleHQgeD0iMS44IiB5PSI1NCIgZm9udC1mYW1pbHk9ImFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMTFlM2M3MiI+QzwvdGV4dD4gPC9zdmc+">
-    
-    <title>Coin Anomaly Detector</title>
-    
+    <title>Coin Detective</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
             color: white;
-            overflow-x: hidden;
         }
 
         .container {
@@ -53,10 +37,6 @@
         .header h1 {
             font-size: 1.8em;
             margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
         .header p {
@@ -64,41 +44,33 @@
             opacity: 0.8;
         }
 
-        .install-prompt {
-            background: rgba(46, 213, 115, 0.2);
-            border: 1px solid rgba(46, 213, 115, 0.5);
+        .status-bar {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 20px;
             text-align: center;
-            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .install-prompt.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: #ff4757;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .status-indicator.active {
+            background: #2ed573;
         }
 
-        .install-btn {
-            background: linear-gradient(45deg, #2ed573, #1dd1a1);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .install-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         .controls {
@@ -110,22 +82,23 @@
         }
 
         .btn {
-            padding: 12px 20px;
+            padding: 15px 25px;
             border: none;
             border-radius: 25px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             color: white;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            min-width: 120px;
+            min-width: 140px;
             -webkit-tap-highlight-color: transparent;
         }
 
         .btn:active {
             transform: scale(0.95);
+            background: linear-gradient(45deg, #ff5252, #dd4124);
         }
 
         .btn:disabled {
@@ -138,8 +111,16 @@
             background: linear-gradient(45deg, #74b9ff, #0984e3);
         }
 
+        .btn.secondary:active {
+            background: linear-gradient(45deg, #5ca0ff, #0770c3);
+        }
+
         .btn.success {
             background: linear-gradient(45deg, #00b894, #00a085);
+        }
+
+        .btn.success:active {
+            background: linear-gradient(45deg, #00a085, #008f75);
         }
 
         .video-section {
@@ -177,11 +158,6 @@
             padding: 15px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .metric-card:active {
-            transform: scale(0.98);
         }
 
         .metric-value {
@@ -199,35 +175,6 @@
         .anomaly-medium { color: #ffa502; }
         .anomaly-low { color: #2ed573; }
 
-        .status-bar {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background: #ff4757;
-            animation: pulse 2s infinite;
-        }
-
-        .status-indicator.active {
-            background: #2ed573;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
         .log {
             background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
@@ -244,45 +191,6 @@
             padding: 5px;
             border-left: 3px solid #74b9ff;
             padding-left: 10px;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .settings-panel {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .settings-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .settings-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .settings-label {
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .settings-control {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 0.9em;
         }
 
         @media (max-width: 480px) {
@@ -290,35 +198,10 @@
                 grid-template-columns: 1fr;
             }
             
-            .header h1 {
-                font-size: 1.5em;
-            }
-            
             .btn {
-                font-size: 12px;
-                padding: 10px 15px;
-                min-width: 100px;
-            }
-
-            .settings-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .settings-control {
-                width: 100%;
-            }
-        }
-
-        /* Fold 5 specific optimizations */
-        @media (min-width: 600px) and (max-width: 900px) {
-            .container {
-                max-width: 800px;
-            }
-            
-            .analysis-grid {
-                grid-template-columns: repeat(4, 1fr);
+                font-size: 14px;
+                padding: 12px 20px;
+                min-width: 120px;
             }
         }
     </style>
@@ -326,15 +209,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1><span>🪙</span> Coin Detective</h1>
+            <h1>🪙 Coin Detective</h1>
             <p>Professional anomaly detection for coin collectors</p>
-        </div>
-
-        <div class="install-prompt" id="installPrompt">
-            <p><strong>📱 Install as App</strong></p>
-            <p>Add to your home screen for the best experience!</p>
-            <button class="install-btn" id="installBtn">Install App</button>
-            <button class="install-btn" onclick="document.getElementById('installPrompt').classList.remove('show')" style="background: rgba(255,255,255,0.2); margin-left: 10px;">Later</button>
         </div>
 
         <div class="status-bar">
@@ -377,319 +253,255 @@
             </div>
         </div>
 
-        <div class="settings-panel">
-            <h4>⚙️ Detection Settings</h4>
-            <div class="settings-row">
-                <span class="settings-label">Sensitivity:</span>
-                <select id="sensitivity" class="settings-control">
-                    <option value="low">Low - Major errors only</option>
-                    <option value="medium" selected>Medium - Balanced</option>
-                    <option value="high">High - Detect all variations</option>
-                </select>
-            </div>
-            <div class="settings-row">
-                <span class="settings-label">Coin Type:</span>
-                <select id="coinType" class="settings-control">
-                    <option value="penny">Penny</option>
-                    <option value="nickel">Nickel</option>
-                    <option value="dime">Dime</option>
-                    <option value="quarter" selected>Quarter</option>
-                    <option value="dollar">Dollar Coin</option>
-                    <option value="unknown">Unknown/Custom</option>
-                </select>
-            </div>
-        </div>
-
         <div class="log" id="analysisLog">
-            <div class="log-entry">🚀 Coin Detective PWA initialized. Ready for professional coin analysis!</div>
+            <div class="log-entry">🚀 Coin Detective loaded. Tap Start Camera to begin!</div>
         </div>
     </div>
 
     <script>
-        class CoinDetectivePWA {
+        console.log('🚀 Script starting...');
+        
+        class CoinDetector {
             constructor() {
+                console.log('🔧 Initializing CoinDetector...');
                 this.video = document.getElementById('video');
                 this.canvas = document.getElementById('canvas');
                 this.ctx = this.canvas.getContext('2d');
                 this.stream = null;
                 this.isAnalyzing = false;
-                this.deferredPrompt = null;
                 
                 this.setupCanvas();
                 this.initializeEventListeners();
-                this.setupPWA();
-                this.log('PWA loaded successfully. Install for best experience!');
+                this.log('✅ Coin Detector initialized successfully!');
             }
 
             setupCanvas() {
                 this.canvas.width = 600;
                 this.canvas.height = 450;
-            }
-
-            setupPWA() {
-                // Register service worker
-                if ('serviceWorker' in navigator) {
-                    const swCode = `
-                        const CACHE_NAME = 'coin-detector-v1';
-                        const urlsToCache = ['/'];
-                        
-                        self.addEventListener('install', event => {
-                            event.waitUntil(
-                                caches.open(CACHE_NAME)
-                                    .then(cache => cache.addAll(urlsToCache))
-                            );
-                        });
-                        
-                        self.addEventListener('fetch', event => {
-                            event.respondWith(
-                                caches.match(event.request)
-                                    .then(response => {
-                                        return response || fetch(event.request);
-                                    })
-                            );
-                        });
-                    `;
-                    
-                    const blob = new Blob([swCode], { type: 'application/javascript' });
-                    const swURL = URL.createObjectURL(blob);
-                    
-                    navigator.serviceWorker.register(swURL)
-                        .then(() => this.log('🎯 PWA service worker registered'))
-                        .catch(err => this.log('❌ Service worker registration failed', 'error'));
-                }
-
-                // Handle install prompt
-                window.addEventListener('beforeinstallprompt', (e) => {
-                    e.preventDefault();
-                    this.deferredPrompt = e;
-                    document.getElementById('installPrompt').classList.add('show');
-                    this.log('📱 App installation available!');
-                });
-
-                document.getElementById('installBtn').addEventListener('click', async () => {
-                    if (this.deferredPrompt) {
-                        this.deferredPrompt.prompt();
-                        const { outcome } = await this.deferredPrompt.userChoice;
-                        this.log(`📱 Installation ${outcome}`);
-                        this.deferredPrompt = null;
-                        document.getElementById('installPrompt').classList.remove('show');
-                    }
-                });
-
-                // Handle app install
-                window.addEventListener('appinstalled', () => {
-                    this.log('🎉 App installed successfully!');
-                    document.getElementById('installPrompt').classList.remove('show');
-                });
+                console.log('📐 Canvas setup complete');
             }
 
             initializeEventListeners() {
-                document.getElementById('startCamera').addEventListener('click', () => this.startCamera());
-                document.getElementById('captureFrame').addEventListener('click', () => this.captureAndAnalyze());
-                document.getElementById('saveImage').addEventListener('click', () => this.saveAnalysis());
-
-                // Handle orientation changes
-                window.addEventListener('orientationchange', () => {
-                    setTimeout(() => this.handleOrientationChange(), 500);
-                });
-
-                // Prevent zoom on double tap
-                let lastTouchEnd = 0;
-                document.addEventListener('touchend', (event) => {
-                    const now = (new Date()).getTime();
-                    if (now - lastTouchEnd <= 300) {
-                        event.preventDefault();
-                    }
-                    lastTouchEnd = now;
-                }, false);
+                console.log('🎯 Setting up event listeners...');
+                
+                const startBtn = document.getElementById('startCamera');
+                const captureBtn = document.getElementById('captureFrame');
+                const saveBtn = document.getElementById('saveImage');
+                
+                if (startBtn) {
+                    startBtn.addEventListener('click', () => {
+                        console.log('🎥 Start camera button clicked!');
+                        this.startCamera();
+                    });
+                    console.log('✅ Start camera listener added');
+                } else {
+                    console.error('❌ Start camera button not found!');
+                }
+                
+                if (captureBtn) {
+                    captureBtn.addEventListener('click', () => {
+                        console.log('🔍 Capture button clicked!');
+                        this.captureAndAnalyze();
+                    });
+                    console.log('✅ Capture listener added');
+                }
+                
+                if (saveBtn) {
+                    saveBtn.addEventListener('click', () => {
+                        console.log('💾 Save button clicked!');
+                        this.saveAnalysis();
+                    });
+                    console.log('✅ Save listener added');
+                }
             }
 
             updateStatus(message, isActive = false) {
-                document.getElementById('statusText').textContent = message;
+                console.log('📊 Status update:', message);
+                const statusText = document.getElementById('statusText');
                 const indicator = document.getElementById('statusIndicator');
-                if (isActive) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
+                
+                if (statusText) statusText.textContent = message;
+                if (indicator) {
+                    if (isActive) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
                 }
             }
 
             async startCamera() {
+                console.log('📷 Starting camera...');
                 this.updateStatus('Requesting camera permission...');
                 
                 try {
-                    // Enhanced mobile camera constraints
+                    // Check if getUserMedia is available
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        throw new Error('Camera API not supported');
+                    }
+                    
+                    console.log('✅ Camera API available');
+                    
                     const constraints = {
                         video: {
-                            width: { ideal: 1920, max: 3840 },
-                            height: { ideal: 1080, max: 2160 },
-                            facingMode: 'environment',
-                            focusMode: 'continuous',
-                            exposureMode: 'continuous',
-                            whiteBalanceMode: 'continuous'
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 },
+                            facingMode: 'environment'
                         }
                     };
 
+                    console.log('🔍 Requesting camera with constraints:', constraints);
                     this.stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    console.log('✅ Camera permission granted!');
+                    
                     this.video.srcObject = this.stream;
                     
                     this.video.onloadedmetadata = () => {
+                        console.log('📹 Video metadata loaded');
                         this.updateStatus('Camera active - Position coin and analyze', true);
-                        document.getElementById('startCamera').disabled = true;
-                        document.getElementById('captureFrame').disabled = false;
-                        this.log('📹 High-resolution camera started successfully');
                         
-                        // Log camera capabilities
+                        // Enable capture button
+                        const captureBtn = document.getElementById('captureFrame');
+                        const startBtn = document.getElementById('startCamera');
+                        
+                        if (captureBtn) captureBtn.disabled = false;
+                        if (startBtn) startBtn.disabled = true;
+                        
+                        this.log('📹 Camera started successfully!');
+                        
+                        // Log camera settings
                         const track = this.stream.getVideoTracks()[0];
-                        const settings = track.getSettings();
-                        this.log(`📊 Camera: ${settings.width}x${settings.height}, ${settings.facingMode} camera`);
+                        if (track) {
+                            const settings = track.getSettings();
+                            console.log('📊 Camera settings:', settings);
+                            this.log(`📊 Camera: ${settings.width || 'unknown'}x${settings.height || 'unknown'}`);
+                        }
                     };
                     
                 } catch (error) {
+                    console.error('❌ Camera error:', error);
                     this.updateStatus(`Camera error: ${error.name}`);
-                    this.log(`❌ Camera access failed: ${error.message}`, 'error');
+                    this.log(`❌ Camera failed: ${error.message}`, 'error');
                     
+                    let message = '📷 Camera access failed. ';
                     if (error.name === 'NotAllowedError') {
-                        alert('📷 Camera permission denied. Please allow camera access and try again.');
+                        message += 'Please allow camera permission and try again.';
                     } else if (error.name === 'NotFoundError') {
-                        alert('📷 No camera found on this device.');
+                        message += 'No camera found on this device.';
+                    } else if (error.name === 'NotSupportedError') {
+                        message += 'Camera not supported in this browser.';
                     } else {
-                        alert('📷 Camera access failed. Please refresh and try again.');
+                        message += 'Please refresh and try again.';
                     }
+                    
+                    alert(message);
                 }
             }
 
             captureAndAnalyze() {
-                if (this.isAnalyzing) return;
+                if (this.isAnalyzing) {
+                    console.log('⚠️ Analysis already in progress');
+                    return;
+                }
                 
+                console.log('🔍 Starting analysis...');
                 this.isAnalyzing = true;
                 this.updateStatus('Analyzing coin...');
                 this.log('🔍 Capturing and analyzing coin image...');
                 
-                // Capture current video frame
-                this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
-                
-                // Simulate processing with progress
-                let progress = 0;
-                const progressInterval = setInterval(() => {
-                    progress += 20;
-                    this.updateStatus(`Analyzing... ${progress}%`);
+                try {
+                    // Capture current video frame
+                    this.ctx.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
+                    console.log('📸 Frame captured to canvas');
                     
-                    if (progress >= 100) {
-                        clearInterval(progressInterval);
-                        this.performEnhancedAnalysis();
-                        this.updateStatus('Analysis complete!', true);
-                        document.getElementById('saveImage').disabled = false;
-                        this.isAnalyzing = false;
-                    }
-                }, 200);
+                    // Simulate processing with progress
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        progress += 25;
+                        this.updateStatus(`Analyzing... ${progress}%`);
+                        
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                            console.log('🧮 Starting image analysis...');
+                            this.performAnalysis();
+                            this.updateStatus('Analysis complete!', true);
+                            
+                            // Enable save button
+                            const saveBtn = document.getElementById('saveImage');
+                            if (saveBtn) saveBtn.disabled = false;
+                            
+                            this.isAnalyzing = false;
+                            console.log('✅ Analysis complete');
+                        }
+                    }, 300);
+                    
+                } catch (error) {
+                    console.error('❌ Analysis error:', error);
+                    this.log('❌ Analysis failed: ' + error.message, 'error');
+                    this.isAnalyzing = false;
+                }
             }
 
-            performEnhancedAnalysis() {
-                const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-                const data = imageData.data;
+            performAnalysis() {
+                console.log('🧮 Performing image analysis...');
                 
-                // Enhanced analysis for coin detection
-                const analysis = this.advancedCoinAnalysis(data);
-                
-                // Update display
-                this.updateDisplay(analysis);
-                
-                // Draw professional overlay
-                this.drawProfessionalOverlay(analysis);
-                
-                // Generate detailed report
-                this.generateAnalysisReport(analysis);
+                try {
+                    const imageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                    const data = imageData.data;
+                    console.log('📊 Image data extracted, pixels:', data.length / 4);
+                    
+                    // Simple analysis
+                    const analysis = this.analyzeImage(data);
+                    console.log('📈 Analysis results:', analysis);
+                    
+                    // Update display
+                    this.updateDisplay(analysis);
+                    
+                    // Draw overlay
+                    this.drawOverlay(analysis);
+                    
+                    // Generate report
+                    this.generateReport(analysis);
+                    
+                } catch (error) {
+                    console.error('❌ Analysis processing error:', error);
+                    this.log('❌ Analysis processing failed: ' + error.message, 'error');
+                }
             }
 
-            advancedCoinAnalysis(data) {
+            analyzeImage(data) {
                 let brightPixels = 0;
                 let darkPixels = 0;
-                let edgePixels = 0;
+                let midPixels = 0;
                 let colorVariation = 0;
-                let textureComplexity = 0;
                 
                 const pixelCount = data.length / 4;
-                const centerX = this.canvas.width / 2;
-                const centerY = this.canvas.height / 2;
-                let radiusVariations = [];
                 
-                // Enhanced pixel analysis
                 for (let i = 0; i < data.length; i += 4) {
                     const r = data[i];
                     const g = data[i + 1];
                     const b = data[i + 2];
                     const brightness = (r + g + b) / 3;
                     
-                    if (brightness > 200) brightPixels++;
-                    if (brightness < 50) darkPixels++;
-                    if (brightness > 100 && brightness < 150) edgePixels++;
+                    if (brightness > 180) brightPixels++;
+                    else if (brightness < 80) darkPixels++;
+                    else midPixels++;
                     
-                    // Color variation analysis
-                    const colorVar = Math.abs(r - g) + Math.abs(g - b) + Math.abs(b - r);
-                    colorVariation += colorVar;
-                    
-                    // Texture complexity
-                    if (colorVar > 30) textureComplexity++;
+                    colorVariation += Math.abs(r - g) + Math.abs(g - b) + Math.abs(b - r);
                 }
                 
-                // Shape analysis - check for circularity
-                for (let angle = 0; angle < 360; angle += 15) {
-                    const rad = (angle * Math.PI) / 180;
-                    for (let radius = 50; radius < Math.min(this.canvas.width, this.canvas.height) / 2; radius += 5) {
-                        const x = Math.round(centerX + radius * Math.cos(rad));
-                        const y = Math.round(centerY + radius * Math.sin(rad));
-                        
-                        if (x >= 0 && x < this.canvas.width && y >= 0 && y < this.canvas.height) {
-                            const idx = (y * this.canvas.width + x) * 4;
-                            const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
-                            
-                            if (brightness < 80) {
-                                radiusVariations.push(radius);
-                                break;
-                            }
-                        }
-                    }
-                }
-                
-                // Calculate metrics
                 const brightRatio = brightPixels / pixelCount;
                 const darkRatio = darkPixels / pixelCount;
-                const edgeRatio = edgePixels / pixelCount;
+                const midRatio = midPixels / pixelCount;
                 const avgColorVar = colorVariation / pixelCount;
-                const textureRatio = textureComplexity / pixelCount;
                 
-                // Shape consistency
-                let shapeScore = 0.5;
-                if (radiusVariations.length > 10) {
-                    const avgRadius = radiusVariations.reduce((a, b) => a + b) / radiusVariations.length;
-                    const variance = radiusVariations.reduce((acc, r) => acc + Math.pow(r - avgRadius, 2), 0) / radiusVariations.length;
-                    const stdDev = Math.sqrt(variance);
-                    shapeScore = Math.min(stdDev / (avgRadius || 1), 1.0);
-                }
+                // Calculate scores (0-1)
+                const edge = Math.min(Math.abs(brightRatio - darkRatio) * 3, 1);
+                const surface = Math.min((brightRatio * 0.5 + darkRatio * 0.3 + avgColorVar / 100), 1);
+                const shape = Math.min(Math.abs(0.5 - midRatio) * 2, 1);
+                const overall = (edge + surface + shape) / 3;
                 
-                // Sensitivity adjustments
-                const sensitivity = document.getElementById('sensitivity').value;
-                const multiplier = sensitivity === 'high' ? 1.5 : sensitivity === 'low' ? 0.7 : 1.0;
-                
-                const edge = Math.min(edgeRatio * 4 * multiplier, 1);
-                const surface = Math.min((brightRatio * 2 + darkRatio * 3 + textureRatio * 2) * multiplier, 1);
-                const shape = Math.min(shapeScore * multiplier, 1);
-                const overall = (edge * 0.4 + surface * 0.4 + shape * 0.2);
-                
-                return { 
-                    overall, 
-                    edge, 
-                    surface, 
-                    shape,
-                    details: {
-                        brightRatio,
-                        darkRatio,
-                        textureRatio,
-                        avgRadius: radiusVariations.length > 0 ? radiusVariations.reduce((a, b) => a + b) / radiusVariations.length : 0,
-                        edgePixels: radiusVariations.length
-                    }
-                };
+                return { overall, edge, surface, shape };
             }
 
             updateDisplay(analysis) {
@@ -701,6 +513,142 @@
 
                 const updateMetric = (id, value) => {
                     const el = document.getElementById(id);
-                    el.textContent = value.toFixed(3);
-                    el.className = `metric-value ${getClass(value)}`;
+                    if (el) {
+                        el.textContent = value.toFixed(3);
+                        el.className = `metric-value ${getClass(value)}`;
+                    }
                 };
+
+                updateMetric('overallScore', analysis.overall);
+                updateMetric('edgeScore', analysis.edge);
+                updateMetric('surfaceScore', analysis.surface);
+                updateMetric('shapeScore', analysis.shape);
+                
+                console.log('📊 Display updated with analysis results');
+            }
+
+            drawOverlay(analysis) {
+                this.ctx.save();
+                
+                // Draw detection frame
+                this.ctx.strokeStyle = analysis.overall > 0.5 ? '#ff4757' : '#2ed573';
+                this.ctx.lineWidth = 3;
+                this.ctx.strokeRect(50, 50, this.canvas.width - 100, this.canvas.height - 100);
+                
+                // Draw center crosshair
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+                
+                this.ctx.strokeStyle = '#74b9ff';
+                this.ctx.lineWidth = 2;
+                this.ctx.beginPath();
+                this.ctx.moveTo(centerX - 20, centerY);
+                this.ctx.lineTo(centerX + 20, centerY);
+                this.ctx.moveTo(centerX, centerY - 20);
+                this.ctx.lineTo(centerX, centerY + 20);
+                this.ctx.stroke();
+                
+                // Add status text
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                this.ctx.fillRect(10, 10, 180, 60);
+                
+                this.ctx.fillStyle = 'white';
+                this.ctx.font = 'bold 14px Arial';
+                this.ctx.fillText('🎯 Analysis Complete', 15, 30);
+                
+                const status = analysis.overall > 0.6 ? 'HIGH ANOMALY' : 
+                              analysis.overall > 0.3 ? 'MODERATE' : 'NORMAL';
+                const color = analysis.overall > 0.6 ? '#ff4757' : 
+                             analysis.overall > 0.3 ? '#ffa502' : '#2ed573';
+                
+                this.ctx.fillStyle = color;
+                this.ctx.font = '12px Arial';
+                this.ctx.fillText(`Status: ${status}`, 15, 50);
+                
+                this.ctx.restore();
+                console.log('🎨 Analysis overlay drawn');
+            }
+
+            generateReport(analysis) {
+                let findings = [];
+                
+                if (analysis.edge > 0.5) findings.push('Edge irregularities detected');
+                if (analysis.surface > 0.5) findings.push('Surface anomalies present');
+                if (analysis.shape > 0.4) findings.push('Shape deviation found');
+                
+                if (findings.length === 0) {
+                    this.log('✅ No significant anomalies detected');
+                } else {
+                    this.log(`⚠️ Findings: ${findings.join(', ')}`);
+                }
+                
+                this.log(`📊 Overall score: ${analysis.overall.toFixed(3)}`);
+            }
+
+            saveAnalysis() {
+                try {
+                    console.log('💾 Saving analysis...');
+                    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+                    
+                    const link = document.createElement('a');
+                    link.download = `coin-analysis-${timestamp}.png`;
+                    link.href = this.canvas.toDataURL('image/png', 0.9);
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    this.log('💾 Analysis image saved successfully');
+                    console.log('✅ Image saved');
+                    
+                } catch (error) {
+                    console.error('❌ Save error:', error);
+                    this.log('❌ Failed to save image: ' + error.message, 'error');
+                }
+            }
+
+            log(message, type = 'info') {
+                const logElement = document.getElementById('analysisLog');
+                if (!logElement) return;
+                
+                const entry = document.createElement('div');
+                entry.className = 'log-entry';
+                
+                const timestamp = new Date().toLocaleTimeString();
+                entry.textContent = `${timestamp}: ${message}`;
+                
+                if (type === 'error') {
+                    entry.style.borderLeftColor = '#ff4757';
+                    entry.style.color = '#ff6b6b';
+                }
+                
+                logElement.appendChild(entry);
+                logElement.scrollTop = logElement.scrollHeight;
+                
+                // Keep log manageable
+                while (logElement.children.length > 20) {
+                    logElement.removeChild(logElement.firstChild);
+                }
+                
+                console.log(`📝 Log: ${message}`);
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 DOM loaded, initializing Coin Detector...');
+            try {
+                window.coinDetector = new CoinDetector();
+                console.log('✅ Coin Detector initialized successfully');
+            } catch (error) {
+                console.error('❌ Failed to initialize Coin Detector:', error);
+            }
+        });
+
+        // Debug info
+        console.log('📱 User Agent:', navigator.userAgent);
+        console.log('🔒 Secure Context:', window.isSecureContext);
+        console.log('📷 Camera API available:', !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia));
+    </script>
+</body>
+</html>
